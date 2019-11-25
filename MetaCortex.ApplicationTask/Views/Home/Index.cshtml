@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="container" id="app">
+
+    <form v-on:submit.prevent="getDataPost()">
+        <div class="panel panel-default">
+
+            <div class="panel-heading text-right">
+                <h4 class="pull-left">Exchange Rate</h4>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-info btn-sm">Get Data</button>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="startDate">Start Date</label>
+                            <input id="startDate" class="form-control" type="date" v-model="startDate" required :max='formatedToday' />
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <input id="endDate" class="form-control" type="date" v-model="endDate" required :max='formatedToday' />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="startDate">Select Currency</label>
+                            <select v-model="exchangeRateCode" class="form-control">
+                                <option disabled selected value="null">Select</option>
+                                <option :value="item.code" v-for="item in exchangeRates">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <canvas id="exchangeRateChart" style="display: none;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</section>
